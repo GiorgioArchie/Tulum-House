@@ -1,4 +1,4 @@
-<title>Casa Jade</title>
+<title>Casa Jade Tulum</title>
 <style>
   :root {
     --stucco: #F2EDE2;
@@ -100,6 +100,23 @@
     font-weight: 600;
   }
   #nav .brand span { color: var(--pool); }
+  .loc-tag {
+    font-family: "Archivo", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  #nav .brand .loc-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px 9px;
+    margin-left: 8px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
   #nav-links {
     display: flex;
     align-items: center;
@@ -187,6 +204,18 @@
   #hero h1 {
     font-size: clamp(2.6rem, 7vw, 4.6rem);
     color: #F9F5E9;
+  }
+  #hero h1 .loc-tag {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: clamp(0.72rem, 1.6vw, 0.95rem);
+    letter-spacing: 0.16em;
+    color: #E4DEC8;
+    border: 1px solid rgba(244, 239, 226, 0.4);
+    border-radius: 999px;
+    padding: 0.35em 0.7em;
+    margin-left: 0.5em;
+    transform: translateY(-0.2em);
   }
   #hero .loc {
     margin-top: 10px;
@@ -491,7 +520,7 @@
 </style>
 
 <nav id="nav">
-  <div class="brand">Casa <span>Jade</span></div>
+  <div class="brand">Casa <span>Jade</span><span class="loc-tag">Tulum</span></div>
   <div id="nav-links">
     <a class="section-link" href="#home" data-i18n="nav.home">The Home</a>
     <a class="section-link" href="#gallery" data-i18n="nav.gallery">Gallery</a>
@@ -513,7 +542,7 @@
     <img src="photos/living-room-wide.jpg" alt="Living room with sectional sofa facing floor-to-ceiling glass doors that open onto a private jungle patio">
     <div class="scrim"></div>
     <div class="copy">
-      <h1 class="display">Casa Jade</h1>
+      <h1 class="display">Casa Jade<span class="loc-tag">Tulum</span></h1>
       <p class="loc" data-i18n="hero.sub">A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Inquire About This Home</a>

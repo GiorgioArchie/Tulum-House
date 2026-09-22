@@ -319,6 +319,78 @@
   }
   .bed-grid figcaption b { color: var(--ink); display: block; font-size: 0.92rem; margin-bottom: 2px; }
 
+  /* gallery */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .gallery-item {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: var(--stucco-deep);
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.06); }
+  .gallery-item:focus-visible { outline: 2px solid var(--pool); outline-offset: 2px; }
+
+  /* lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10, 11, 8, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  }
+  .lightbox[hidden] { display: none; }
+  .lb-figure {
+    max-width: min(92vw, 1100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+  }
+  #lb-img { max-width: 100%; max-height: 76vh; object-fit: contain; border-radius: 10px; display: block; }
+  #lb-caption { color: #F4EFE2; font-size: 0.9rem; text-align: center; }
+  .lb-counter {
+    position: absolute;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    left: 50%; transform: translateX(-50%);
+    color: #C9C4B2; font-size: 0.75rem; letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-close, .lb-prev, .lb-next {
+    position: absolute;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #F4EFE2;
+    border-radius: 999px;
+    width: 42px; height: 42px;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-close:hover, .lb-prev:hover, .lb-next:hover { border-color: var(--pool); color: var(--pool); }
+  .lb-close { top: max(18px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right)); }
+  .lb-prev { left: max(12px, env(safe-area-inset-left)); top: 50%; transform: translateY(-50%); }
+  .lb-next { right: max(12px, env(safe-area-inset-right)); top: 50%; transform: translateY(-50%); }
+  @media (max-width: 600px) {
+    .lb-prev, .lb-next, .lb-close { width: 36px; height: 36px; font-size: 1.05rem; }
+  }
+
   /* community full bleed */
   #community { background: var(--canopy); color: #F4EFE2; }
   #community .eyebrow { color: #9FD8C4; }
@@ -422,6 +494,7 @@
   <div class="brand">Casa <span>Jade</span></div>
   <div id="nav-links">
     <a class="section-link" href="#home" data-i18n="nav.home">The Home</a>
+    <a class="section-link" href="#gallery" data-i18n="nav.gallery">Gallery</a>
     <a class="section-link" href="#location" data-i18n="nav.location">Location</a>
     <a class="section-link" href="#invest" data-i18n="nav.invest">Rental History</a>
     <select id="lang-select" aria-label="Language / Idioma / Lingua / Sprache / 语言">
@@ -573,6 +646,34 @@
     </div>
   </section>
 
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="gallery.eyebrow">Photo Gallery</p>
+        <h2 class="display" data-i18n="gallery.h2">Every room, every angle</h2>
+        <p class="lede" data-i18n="gallery.lede">Sixteen photos — click any of them for a closer look.</p>
+      </div>
+      <div class="gallery-grid">
+        <button class="gallery-item" data-idx="0" aria-label="Living Room"><img src="photos/living-room-wide.jpg" alt="Living room with sectional sofa facing floor-to-ceiling glass doors onto the jungle patio" loading="lazy"></button>
+        <button class="gallery-item" data-idx="1" aria-label="Living Room, from Above"><img src="photos/living-room-loft.jpg" alt="Living room seen from the upper-floor landing" loading="lazy"></button>
+        <button class="gallery-item" data-idx="2" aria-label="Living Room Seating"><img src="photos/living-room-sofa.jpg" alt="Living room sofa with colorful accent pillow" loading="lazy"></button>
+        <button class="gallery-item" data-idx="3" aria-label="Kitchen Island"><img src="photos/kitchen-island.jpg" alt="Kitchen with granite island and bar stools for six" loading="lazy"></button>
+        <button class="gallery-item" data-idx="4" aria-label="Kitchen & Entry"><img src="photos/kitchen-entry.jpg" alt="Open kitchen and dining area near the front entry door" loading="lazy"></button>
+        <button class="gallery-item" data-idx="5" aria-label="Dining Area"><img src="photos/dining-stairs.jpg" alt="Dining table with fruit bowl and staircase in the background" loading="lazy"></button>
+        <button class="gallery-item" data-idx="6" aria-label="Bamboo Patio"><img src="photos/patio-bamboo.jpg" alt="Jungle-style back patio dining table shaded by bamboo" loading="lazy"></button>
+        <button class="gallery-item" data-idx="7" aria-label="House Exterior"><img src="photos/patio-facade.jpg" alt="Exterior facade with floor-to-ceiling windows, surrounded by jungle trees" loading="lazy"></button>
+        <button class="gallery-item" data-idx="8" aria-label="Primary Bedroom"><img src="photos/master-bed-view.jpg" alt="Primary bedroom with king bed and luggage rack by the window" loading="lazy"></button>
+        <button class="gallery-item" data-idx="9" aria-label="Primary Bedroom, Wide View"><img src="photos/master-bed-wide.jpg" alt="Primary bedroom with king bed and dark accent wall" loading="lazy"></button>
+        <button class="gallery-item" data-idx="10" aria-label="Primary Bedroom Windows"><img src="photos/master-bed-jungle.jpg" alt="Primary bedroom floor-to-ceiling windows looking into the jungle canopy" loading="lazy"></button>
+        <button class="gallery-item" data-idx="11" aria-label="Primary Bathroom"><img src="photos/master-bath.jpg" alt="Primary bathroom with double vanity and glass shower" loading="lazy"></button>
+        <button class="gallery-item" data-idx="12" aria-label="Private Open-Air Tub"><img src="photos/rooftop-jacuzzi.jpg" alt="Private open-air jacuzzi tub on a wood-screened terrace" loading="lazy"></button>
+        <button class="gallery-item" data-idx="13" aria-label="Twin Bedroom"><img src="photos/twin-bedroom.jpg" alt="Twin bedroom with two beds and navy accent bedding" loading="lazy"></button>
+        <button class="gallery-item" data-idx="14" aria-label="Community Pool & Palapa"><img src="photos/pool-palapa.jpg" alt="Community swimming pool with thatched palapa and lounge chairs" loading="lazy"></button>
+        <button class="gallery-item" data-idx="15" aria-label="Second Bedroom"><img src="photos/queen-bedroom.jpg" alt="Second bedroom with queen bed and yellow accent blanket" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
   <section id="location">
     <div id="community">
       <div class="wrap">
@@ -658,6 +759,17 @@
 
 </main>
 
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" hidden>
+  <button class="lb-close" id="lb-close" type="button">×</button>
+  <button class="lb-prev" id="lb-prev" type="button">‹</button>
+  <button class="lb-next" id="lb-next" type="button">›</button>
+  <figure class="lb-figure">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-caption"></figcaption>
+  </figure>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
 <footer>
   <span data-i18n="footer.tag">Casa Jade · Aldea Zama, Tulum, Quintana Roo</span>
   <a href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener" data-i18n="footer.airbnb">See it live on Airbnb ↗</a>
@@ -676,7 +788,7 @@
 
   var I18N = {
     en: {
-      "nav.home": `The Home`, "nav.location": `Location`, "nav.invest": `Rental History`, "nav.inquire": `Inquire`,
+      "nav.home": `The Home`, "nav.gallery": `Gallery`, "nav.location": `Location`, "nav.invest": `Rental History`, "nav.inquire": `Inquire`,
       "hero.sub": `A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.`,
       "hero.ctaPrimary": `Inquire About This Home`, "hero.ctaSecondary": `See It Live on Airbnb ↗`,
       "facts.bedsLabel": `Bedrooms, each ensuite`, "facts.bathsNum": `3 + Powder`, "facts.bathsLabel": `Full & half baths`,
@@ -710,10 +822,17 @@
       "form.name": `Name`, "form.email": `Email`, "form.phone": `Phone (optional)`, "form.message": `Message`,
       "form.messagePlaceholder": `Tell us about your timeline, financing, or any questions about the home.`,
       "form.submit": `Send Inquiry`, "form.status": `Sent straight to our inbox — we'll reply directly to the email you give us.`,
+      "gallery.eyebrow": `Photo Gallery`, "gallery.h2": `Every room, every angle`, "gallery.lede": `Sixteen photos — click any of them for a closer look.`,
+      "gallery.close": `Close`, "gallery.prev": `Previous photo`, "gallery.next": `Next photo`,
+      "gallery.cap.0": `Living Room`, "gallery.cap.1": `Living Room, from Above`, "gallery.cap.2": `Living Room Seating`,
+      "gallery.cap.3": `Kitchen Island`, "gallery.cap.4": `Kitchen & Entry`, "gallery.cap.5": `Dining Area`,
+      "gallery.cap.6": `Bamboo Patio`, "gallery.cap.7": `House Exterior`, "gallery.cap.8": `Primary Bedroom`,
+      "gallery.cap.9": `Primary Bedroom, Wide View`, "gallery.cap.10": `Primary Bedroom Windows`, "gallery.cap.11": `Primary Bathroom`,
+      "gallery.cap.12": `Private Open-Air Tub`, "gallery.cap.13": `Twin Bedroom`, "gallery.cap.14": `Community Pool & Palapa`, "gallery.cap.15": `Second Bedroom`,
       "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `See it live on Airbnb ↗`
     },
     es: {
-      "nav.home": `La Casa`, "nav.location": `Ubicación`, "nav.invest": `Historial de Alquiler`, "nav.inquire": `Consultar`,
+      "nav.home": `La Casa`, "nav.gallery": `Galería`, "nav.location": `Ubicación`, "nav.invest": `Historial de Alquiler`, "nav.inquire": `Consultar`,
       "hero.sub": `Una casa de tres recámaras totalmente amueblada, entre la vegetación de Aldea Zama — el vecindario privado y peatonal de Tulum, a solo minutos de la playa.`,
       "hero.ctaPrimary": `Consultar Sobre Esta Casa`, "hero.ctaSecondary": `Verla en Vivo en Airbnb ↗`,
       "facts.bedsLabel": `Recámaras, todas con baño propio`, "facts.bathsNum": `3 + Medio`, "facts.bathsLabel": `Baños completos y medio baño`,
@@ -747,10 +866,17 @@
       "form.name": `Nombre`, "form.email": `Correo electrónico`, "form.phone": `Teléfono (opcional)`, "form.message": `Mensaje`,
       "form.messagePlaceholder": `Cuéntanos sobre tus tiempos, financiamiento, o cualquier duda sobre la casa.`,
       "form.submit": `Enviar Consulta`, "form.status": `Se envía directo a nuestro correo — te responderemos al correo que nos compartas.`,
+      "gallery.eyebrow": `Galería de Fotos`, "gallery.h2": `Cada rincón, cada ángulo`, "gallery.lede": `Dieciséis fotos — haz clic en cualquiera para verla más de cerca.`,
+      "gallery.close": `Cerrar`, "gallery.prev": `Foto anterior`, "gallery.next": `Foto siguiente`,
+      "gallery.cap.0": `Sala`, "gallery.cap.1": `Sala, Vista Superior`, "gallery.cap.2": `Área de Sala`,
+      "gallery.cap.3": `Isla de Cocina`, "gallery.cap.4": `Cocina y Entrada`, "gallery.cap.5": `Comedor`,
+      "gallery.cap.6": `Patio de Bambú`, "gallery.cap.7": `Fachada de la Casa`, "gallery.cap.8": `Recámara Principal`,
+      "gallery.cap.9": `Recámara Principal, Vista Amplia`, "gallery.cap.10": `Ventanales de la Recámara Principal`, "gallery.cap.11": `Baño Principal`,
+      "gallery.cap.12": `Tina Privada al Aire Libre`, "gallery.cap.13": `Recámara de Camas Individuales`, "gallery.cap.14": `Alberca y Palapa de la Comunidad`, "gallery.cap.15": `Segunda Recámara`,
       "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Verla en vivo en Airbnb ↗`
     },
     it: {
-      "nav.home": `La Casa`, "nav.location": `La Zona`, "nav.invest": `Storico Affitti`, "nav.inquire": `Contattaci`,
+      "nav.home": `La Casa`, "nav.gallery": `Galleria`, "nav.location": `La Zona`, "nav.invest": `Storico Affitti`, "nav.inquire": `Contattaci`,
       "hero.sub": `Una casa di tre camere completamente arredata, immersa nel verde di Aldea Zama — il quartiere recintato e pedonale di Tulum, a pochi minuti dalla spiaggia.`,
       "hero.ctaPrimary": `Richiedi Informazioni`, "hero.ctaSecondary": `Guardala su Airbnb ↗`,
       "facts.bedsLabel": `Camere, tutte con bagno privato`, "facts.bathsNum": `3 + Lavabo`, "facts.bathsLabel": `Bagni completi e di servizio`,
@@ -784,10 +910,17 @@
       "form.name": `Nome`, "form.email": `Email`, "form.phone": `Telefono (facoltativo)`, "form.message": `Messaggio`,
       "form.messagePlaceholder": `Raccontaci le tue tempistiche, il finanziamento o qualsiasi domanda sulla casa.`,
       "form.submit": `Invia Richiesta`, "form.status": `Arriva direttamente nella nostra casella di posta — ti risponderemo all'indirizzo che ci lasci.`,
+      "gallery.eyebrow": `Galleria Fotografica`, "gallery.h2": `Ogni stanza, ogni angolo`, "gallery.lede": `Sedici foto — clicca su una qualsiasi per ingrandirla.`,
+      "gallery.close": `Chiudi`, "gallery.prev": `Foto precedente`, "gallery.next": `Foto successiva`,
+      "gallery.cap.0": `Soggiorno`, "gallery.cap.1": `Soggiorno, Vista dall'Alto`, "gallery.cap.2": `Zona Living`,
+      "gallery.cap.3": `Isola della Cucina`, "gallery.cap.4": `Cucina e Ingresso`, "gallery.cap.5": `Zona Pranzo`,
+      "gallery.cap.6": `Patio in Bambù`, "gallery.cap.7": `Facciata della Casa`, "gallery.cap.8": `Camera Principale`,
+      "gallery.cap.9": `Camera Principale, Vista Ampia`, "gallery.cap.10": `Vetrate della Camera Principale`, "gallery.cap.11": `Bagno Principale`,
+      "gallery.cap.12": `Vasca Privata all'Aperto`, "gallery.cap.13": `Camera con Letti Singoli`, "gallery.cap.14": `Piscina e Palapa della Comunità`, "gallery.cap.15": `Seconda Camera`,
       "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Guardala su Airbnb ↗`
     },
     de: {
-      "nav.home": `Das Haus`, "nav.location": `Lage`, "nav.invest": `Vermietungshistorie`, "nav.inquire": `Anfragen`,
+      "nav.home": `Das Haus`, "nav.gallery": `Galerie`, "nav.location": `Lage`, "nav.invest": `Vermietungshistorie`, "nav.inquire": `Anfragen`,
       "hero.sub": `Ein komplett möbliertes Haus mit drei Schlafzimmern, eingebettet ins Grün von Aldea Zama — Tulums bewachtem, fußgängerfreundlichem Viertel nur wenige Minuten vom Strand entfernt.`,
       "hero.ctaPrimary": `Jetzt Anfragen`, "hero.ctaSecondary": `Live auf Airbnb Ansehen ↗`,
       "facts.bedsLabel": `Schlafzimmer, alle mit eigenem Bad`, "facts.bathsNum": `3 + Gäste-WC`, "facts.bathsLabel": `Voll- und Gästebäder`,
@@ -821,10 +954,17 @@
       "form.name": `Name`, "form.email": `E-Mail`, "form.phone": `Telefon (optional)`, "form.message": `Nachricht`,
       "form.messagePlaceholder": `Erzählen Sie uns von Ihrem Zeitplan, der Finanzierung oder anderen Fragen zum Haus.`,
       "form.submit": `Anfrage Senden`, "form.status": `Geht direkt in unser Postfach — wir antworten an die E-Mail-Adresse, die Sie angeben.`,
+      "gallery.eyebrow": `Fotogalerie`, "gallery.h2": `Jeder Raum, jede Perspektive`, "gallery.lede": `Sechzehn Fotos — klicken Sie auf eines, um es größer zu sehen.`,
+      "gallery.close": `Schließen`, "gallery.prev": `Vorheriges Foto`, "gallery.next": `Nächstes Foto`,
+      "gallery.cap.0": `Wohnzimmer`, "gallery.cap.1": `Wohnzimmer, Blick von oben`, "gallery.cap.2": `Wohnbereich`,
+      "gallery.cap.3": `Kücheninsel`, "gallery.cap.4": `Küche & Eingang`, "gallery.cap.5": `Essbereich`,
+      "gallery.cap.6": `Terrasse mit Bambus`, "gallery.cap.7": `Hausfassade`, "gallery.cap.8": `Hauptschlafzimmer`,
+      "gallery.cap.9": `Hauptschlafzimmer, Weitwinkel`, "gallery.cap.10": `Fenster im Hauptschlafzimmer`, "gallery.cap.11": `Hauptbad`,
+      "gallery.cap.12": `Private Außenwanne`, "gallery.cap.13": `Zimmer mit Einzelbetten`, "gallery.cap.14": `Gemeinschaftspool & Palapa`, "gallery.cap.15": `Zweites Schlafzimmer`,
       "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Live auf Airbnb ansehen ↗`
     },
     zh: {
-      "nav.home": `房屋详情`, "nav.location": `周边位置`, "nav.invest": `租赁记录`, "nav.inquire": `立即咨询`,
+      "nav.home": `房屋详情`, "nav.gallery": `图库`, "nav.location": `周边位置`, "nav.invest": `租赁记录`, "nav.inquire": `立即咨询`,
       "hero.sub": `一套三居室全配家具住宅,坐落于阿尔德亚萨玛(Aldea Zama)的丛林之间——图伦(Tulum)距海滩仅几分钟路程、设有门禁的宜居社区。`,
       "hero.ctaPrimary": `咨询这套房产`, "hero.ctaSecondary": `查看 Airbnb 房源 ↗`,
       "facts.bedsLabel": `间卧室,均带独立卫浴`, "facts.bathsNum": `3 + 半`, "facts.bathsLabel": `全卫生间及客用洗手间`,
@@ -858,6 +998,13 @@
       "form.name": `姓名`, "form.email": `电子邮箱`, "form.phone": `电话(选填)`, "form.message": `留言`,
       "form.messagePlaceholder": `请告诉我们您的购房时间、融资情况,或任何关于该房产的问题。`,
       "form.submit": `发送咨询`, "form.status": `信息将直接发送至我们的邮箱——我们会回复至您留下的邮箱地址。`,
+      "gallery.eyebrow": `照片图库`, "gallery.h2": `每个房间,每个角度`, "gallery.lede": `共16张实拍图——点击任意一张查看大图。`,
+      "gallery.close": `关闭`, "gallery.prev": `上一张`, "gallery.next": `下一张`,
+      "gallery.cap.0": `客厅`, "gallery.cap.1": `客厅俯瞰`, "gallery.cap.2": `客厅休息区`,
+      "gallery.cap.3": `厨房中岛`, "gallery.cap.4": `厨房与入口`, "gallery.cap.5": `餐厅`,
+      "gallery.cap.6": `竹林露台`, "gallery.cap.7": `房屋外观`, "gallery.cap.8": `主卧`,
+      "gallery.cap.9": `主卧全景`, "gallery.cap.10": `主卧落地窗`, "gallery.cap.11": `主卫浴`,
+      "gallery.cap.12": `私人露天浴缸`, "gallery.cap.13": `双床卧室`, "gallery.cap.14": `社区泳池与凉亭`, "gallery.cap.15": `第二卧室`,
       "footer.tag": `Casa Jade · 墨西哥金塔纳罗奥州图伦阿尔德亚萨玛`, "footer.airbnb": `查看 Airbnb 实时房源 ↗`
     }
   };
@@ -884,6 +1031,7 @@
         if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
       });
       document.documentElement.lang = lang;
+      document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
     }
 
     var initial = getSavedLang() || 'en';
@@ -895,6 +1043,98 @@
       var lang = select.value;
       saveLang(lang);
       applyLang(lang);
+    });
+  })();
+
+  (function () {
+    var GALLERY = [
+      { src: 'photos/living-room-wide.jpg', alt: 'Living room with sectional sofa facing floor-to-ceiling glass doors onto the jungle patio', key: 'gallery.cap.0' },
+      { src: 'photos/living-room-loft.jpg', alt: 'Living room seen from the upper-floor landing', key: 'gallery.cap.1' },
+      { src: 'photos/living-room-sofa.jpg', alt: 'Living room sofa with colorful accent pillow', key: 'gallery.cap.2' },
+      { src: 'photos/kitchen-island.jpg', alt: 'Kitchen with granite island and bar stools for six', key: 'gallery.cap.3' },
+      { src: 'photos/kitchen-entry.jpg', alt: 'Open kitchen and dining area near the front entry door', key: 'gallery.cap.4' },
+      { src: 'photos/dining-stairs.jpg', alt: 'Dining table with fruit bowl and staircase in the background', key: 'gallery.cap.5' },
+      { src: 'photos/patio-bamboo.jpg', alt: 'Jungle-style back patio dining table shaded by bamboo', key: 'gallery.cap.6' },
+      { src: 'photos/patio-facade.jpg', alt: 'Exterior facade with floor-to-ceiling windows, surrounded by jungle trees', key: 'gallery.cap.7' },
+      { src: 'photos/master-bed-view.jpg', alt: 'Primary bedroom with king bed and luggage rack by the window', key: 'gallery.cap.8' },
+      { src: 'photos/master-bed-wide.jpg', alt: 'Primary bedroom with king bed and dark accent wall', key: 'gallery.cap.9' },
+      { src: 'photos/master-bed-jungle.jpg', alt: 'Primary bedroom floor-to-ceiling windows looking into the jungle canopy', key: 'gallery.cap.10' },
+      { src: 'photos/master-bath.jpg', alt: 'Primary bathroom with double vanity and glass shower', key: 'gallery.cap.11' },
+      { src: 'photos/rooftop-jacuzzi.jpg', alt: 'Private open-air jacuzzi tub on a wood-screened terrace', key: 'gallery.cap.12' },
+      { src: 'photos/twin-bedroom.jpg', alt: 'Twin bedroom with two beds and navy accent bedding', key: 'gallery.cap.13' },
+      { src: 'photos/pool-palapa.jpg', alt: 'Community swimming pool with thatched palapa and lounge chairs', key: 'gallery.cap.14' },
+      { src: 'photos/queen-bedroom.jpg', alt: 'Second bedroom with queen bed and yellow accent blanket', key: 'gallery.cap.15' }
+    ];
+
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbCaption = document.getElementById('lb-caption');
+    var lbCounter = document.getElementById('lb-counter');
+    var closeBtn = document.getElementById('lb-close');
+    var prevBtn = document.getElementById('lb-prev');
+    var nextBtn = document.getElementById('lb-next');
+    var items = document.querySelectorAll('.gallery-item');
+    var currentIdx = 0;
+    var lastFocused = null;
+
+    function currentDict() {
+      var lang = document.documentElement.lang;
+      return I18N[lang] || I18N.en;
+    }
+
+    function render() {
+      var dict = currentDict();
+      var item = GALLERY[currentIdx];
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+      lbCaption.textContent = dict[item.key] || '';
+      lbCounter.textContent = (currentIdx + 1) + ' / ' + GALLERY.length;
+      closeBtn.setAttribute('aria-label', dict['gallery.close'] || 'Close');
+      prevBtn.setAttribute('aria-label', dict['gallery.prev'] || 'Previous photo');
+      nextBtn.setAttribute('aria-label', dict['gallery.next'] || 'Next photo');
+    }
+
+    function open(idx) {
+      currentIdx = idx;
+      lastFocused = document.activeElement;
+      render();
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function close() {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    function next() { currentIdx = (currentIdx + 1) % GALLERY.length; render(); }
+    function prev() { currentIdx = (currentIdx - 1 + GALLERY.length) % GALLERY.length; render(); }
+
+    items.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        open(parseInt(btn.getAttribute('data-idx'), 10));
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    });
+
+    document.addEventListener('langchange', function () {
+      if (!lightbox.hidden) render();
     });
   })();
 </script>

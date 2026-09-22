@@ -111,6 +111,24 @@
     #nav-links a.section-link { display: inline; }
   }
   #nav-links a.section-link:hover { color: var(--pool); }
+  #lang-select {
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 28px 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355594C' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 14px;
+  }
+  #lang-select:focus { outline: 2px solid var(--pool); outline-offset: 1px; }
   .btn {
     display: inline-flex;
     align-items: center;
@@ -403,10 +421,17 @@
 <nav id="nav">
   <div class="brand">Casa <span>Jade</span></div>
   <div id="nav-links">
-    <a class="section-link" href="#home">The Home</a>
-    <a class="section-link" href="#location">Location</a>
-    <a class="section-link" href="#invest">Rental History</a>
-    <a class="btn btn-primary" href="#contact">Inquire</a>
+    <a class="section-link" href="#home" data-i18n="nav.home">The Home</a>
+    <a class="section-link" href="#location" data-i18n="nav.location">Location</a>
+    <a class="section-link" href="#invest" data-i18n="nav.invest">Rental History</a>
+    <select id="lang-select" aria-label="Language / Idioma / Lingua / Sprache / 语言">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="it">IT</option>
+      <option value="de">DE</option>
+      <option value="zh">中文</option>
+    </select>
+    <a class="btn btn-primary" href="#contact" data-i18n="nav.inquire">Inquire</a>
   </div>
 </nav>
 
@@ -416,10 +441,10 @@
     <div class="scrim"></div>
     <div class="copy">
       <h1 class="display">Casa Jade</h1>
-      <p class="loc">A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.</p>
+      <p class="loc" data-i18n="hero.sub">A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#contact">Inquire About This Home</a>
-        <a class="btn btn-line" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">See It Live on Airbnb ↗</a>
+        <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Inquire About This Home</a>
+        <a class="btn btn-line" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener" data-i18n="hero.ctaSecondary">See It Live on Airbnb ↗</a>
       </div>
     </div>
   </div>
@@ -427,23 +452,23 @@
   <div id="facts" class="wrap" style="margin-inline:auto;">
     <div class="fact">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18h18"/><path d="M5 10V7a2 2 0 0 1 2-2h3v5"/><path d="M14 10V7a2 2 0 0 0-2-2h-1"/></svg>
-      <div class="num">3</div><div class="label">Bedrooms, each ensuite</div>
+      <div class="num">3</div><div class="label" data-i18n="facts.bedsLabel">Bedrooms, each ensuite</div>
     </div>
     <div class="fact">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z"/><path d="M6 12V6a2 2 0 0 1 3.6-1.2"/><path d="M4 12V9"/></svg>
-      <div class="num">3 + Powder</div><div class="label">Full &amp; half baths</div>
+      <div class="num" data-i18n="facts.bathsNum">3 + Powder</div><div class="label" data-i18n="facts.bathsLabel">Full &amp; half baths</div>
     </div>
     <div class="fact">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="1.5"/><path d="M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
-      <div class="num">1,750</div><div class="label">Interior sq ft</div>
+      <div class="num">1,750</div><div class="label" data-i18n="facts.sqftLabel">Interior sq ft</div>
     </div>
     <div class="fact">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
-      <div class="num">2018</div><div class="label">Year built</div>
+      <div class="num">2018</div><div class="label" data-i18n="facts.builtLabel">Year built</div>
     </div>
     <div class="fact">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.4 3.4 8.4 8 9 4.6-.6 8-4.6 8-9V6l-8-3Z"/></svg>
-      <div class="num">Gated</div><div class="label">24-hour security</div>
+      <div class="num" data-i18n="facts.gatedNum">Gated</div><div class="label" data-i18n="facts.gatedLabel">24-hour security</div>
     </div>
   </div>
 </header>
@@ -454,10 +479,10 @@
     <div class="wrap">
       <div class="split">
         <div>
-          <p class="eyebrow">The Home</p>
-          <h2 class="display">Three floors, built for treetop living</h2>
-          <p class="prose" style="margin-top:16px;">Three bedrooms, each with its own private bathroom, are spread across three light-filled floors — every one of them, plus the living room, cooled by its own A/C unit. The house came fully furnished in 2018 and has been kept that way since: nothing to buy, nothing to wait on.</p>
-          <p class="prose">High-speed Wi-Fi covers every floor, and the layout is as easy for a family of six as it is for a couple who just wants the primary suite to themselves.</p>
+          <p class="eyebrow" data-i18n="home.eyebrow">The Home</p>
+          <h2 class="display" data-i18n="home.h2">Three floors, built for treetop living</h2>
+          <p class="prose" style="margin-top:16px;" data-i18n="home.p1">Three bedrooms, each with its own private bathroom, are spread across three light-filled floors — every one of them, plus the living room, cooled by its own A/C unit. The house came fully furnished in 2018 and has been kept that way since: nothing to buy, nothing to wait on.</p>
+          <p class="prose" data-i18n="home.p2">High-speed Wi-Fi covers every floor, and the layout is as easy for a family of six as it is for a couple who just wants the primary suite to themselves.</p>
         </div>
         <div class="about-grid">
           <div class="photo"><img src="photos/living-room-loft.jpg" alt="View down into the living room from the upper-floor landing, showing the sectional sofa and patio doors below"></div>
@@ -471,10 +496,10 @@
     <div class="wrap">
       <div class="split reverse">
         <div>
-          <p class="eyebrow">Kitchen &amp; Living</p>
-          <h2 class="display">Cook, gather, unwind</h2>
-          <p class="prose" style="margin-top:16px;">The kitchen has everything a home cook — or a private chef, if you'd rather book one — needs to work with: full-size refrigerator, oven, cooktop, and small appliances down to the coffee maker. A granite island seats six for breakfast before anyone's made it to the beach.</p>
-          <p class="prose">In the living room, a deep sectional faces a flat-screen wired for Apple TV, a Bluetooth speaker keeps the volume going, and a powder room means guests never have to climb a flight mid-party. Slide the glass doors open and the jungle-style back patio — shaded by bamboo — becomes part of the room.</p>
+          <p class="eyebrow" data-i18n="kitchen.eyebrow">Kitchen &amp; Living</p>
+          <h2 class="display" data-i18n="kitchen.h2">Cook, gather, unwind</h2>
+          <p class="prose" style="margin-top:16px;" data-i18n="kitchen.p1">The kitchen has everything a home cook — or a private chef, if you'd rather book one — needs to work with: full-size refrigerator, oven, cooktop, and small appliances down to the coffee maker. A granite island seats six for breakfast before anyone's made it to the beach.</p>
+          <p class="prose" data-i18n="kitchen.p2">In the living room, a deep sectional faces a flat-screen wired for Apple TV, a Bluetooth speaker keeps the volume going, and a powder room means guests never have to climb a flight mid-party. Slide the glass doors open and the jungle-style back patio — shaded by bamboo — becomes part of the room.</p>
         </div>
         <div class="kitchen-grid">
           <div class="photo big"><img src="photos/kitchen-island.jpg" alt="Kitchen with granite island, bar stools for six, and staircase to the upper floor"></div>
@@ -488,31 +513,31 @@
   <section id="levels">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Layout</p>
-        <h2 class="display">How the house is laid out</h2>
+        <p class="eyebrow" data-i18n="layout.eyebrow">Layout</p>
+        <h2 class="display" data-i18n="layout.h2">How the house is laid out</h2>
       </div>
       <div class="levels">
         <div class="level">
           <div class="tag">01</div>
           <div>
-            <h3>Arrival Level</h3>
-            <p class="prose">Kitchen, living room, powder room, and the shaded back patio all open off one another, with one covered parking space at the door (a second, or room for a larger vehicle, is easy to arrange in advance).</p>
+            <h3 data-i18n="level1.h3">Arrival Level</h3>
+            <p class="prose" data-i18n="level1.p">Kitchen, living room, powder room, and the shaded back patio all open off one another, with one covered parking space at the door (a second, or room for a larger vehicle, is easy to arrange in advance).</p>
           </div>
           <div class="photo"><img src="photos/patio-facade.jpg" alt="Exterior view of the house facade with floor-to-ceiling windows and a covered dining patio, surrounded by jungle trees"></div>
         </div>
         <div class="level">
           <div class="tag">02</div>
           <div>
-            <h3>Guest Bedrooms</h3>
-            <p class="prose">A queen room and a twin room — its two beds convert to a king on request — each keep a private ensuite bathroom and their own A/C unit, with jungle canopy views from the windows.</p>
+            <h3 data-i18n="level2.h3">Guest Bedrooms</h3>
+            <p class="prose" data-i18n="level2.p">A queen room and a twin room — its two beds convert to a king on request — each keep a private ensuite bathroom and their own A/C unit, with jungle canopy views from the windows.</p>
           </div>
           <div class="photo"><img src="photos/twin-bedroom.jpg" alt="Twin bedroom with two beds, navy accent bedding, and a work desk"></div>
         </div>
         <div class="level">
           <div class="tag">03</div>
           <div>
-            <h3>Primary Suite</h3>
-            <p class="prose">The top-floor suite holds a king bed, a wall of glass looking straight into the treetops, a double-vanity bathroom, and a private open-air soaking tub screened by wood slats.</p>
+            <h3 data-i18n="level3.h3">Primary Suite</h3>
+            <p class="prose" data-i18n="level3.p">The top-floor suite holds a king bed, a wall of glass looking straight into the treetops, a double-vanity bathroom, and a private open-air soaking tub screened by wood slats.</p>
           </div>
           <div class="photo"><img src="photos/rooftop-jacuzzi.jpg" alt="Private open-air jacuzzi tub on a wood-screened terrace surrounded by trees"></div>
         </div>
@@ -523,26 +548,26 @@
   <section id="bedrooms" style="background:var(--stucco-deep);">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Bedrooms &amp; Baths</p>
-        <h2 class="display">Room for family, room to spread out</h2>
-        <p class="lede">All three bedrooms are ensuite. Every bed is dressed and ready — no move-in shopping list required.</p>
+        <p class="eyebrow" data-i18n="beds.eyebrow">Bedrooms &amp; Baths</p>
+        <h2 class="display" data-i18n="beds.h2">Room for family, room to spread out</h2>
+        <p class="lede" data-i18n="beds.lede">All three bedrooms are ensuite. Every bed is dressed and ready — no move-in shopping list required.</p>
       </div>
       <div class="bed-grid">
         <figure>
           <div class="photo"><img src="photos/master-bed-wide.jpg" alt="Primary bedroom with king bed and dark accent wall"></div>
-          <figcaption><b>Primary Suite</b>King bed, private tub</figcaption>
+          <figcaption><b data-i18n="bed1.title">Primary Suite</b><span data-i18n="bed1.cap">King bed, private tub</span></figcaption>
         </figure>
         <figure>
           <div class="photo"><img src="photos/queen-bedroom.jpg" alt="Second bedroom with queen bed and yellow accent blanket"></div>
-          <figcaption><b>Second Bedroom</b>Queen bed, ensuite bath</figcaption>
+          <figcaption><b data-i18n="bed2.title">Second Bedroom</b><span data-i18n="bed2.cap">Queen bed, ensuite bath</span></figcaption>
         </figure>
         <figure>
           <div class="photo"><img src="photos/master-bed-jungle.jpg" alt="Primary bedroom floor-to-ceiling windows looking into the jungle canopy"></div>
-          <figcaption><b>Treetop Views</b>Floor-to-ceiling glass</figcaption>
+          <figcaption><b data-i18n="bed3.title">Treetop Views</b><span data-i18n="bed3.cap">Floor-to-ceiling glass</span></figcaption>
         </figure>
         <figure>
           <div class="photo"><img src="photos/master-bath.jpg" alt="Primary bathroom with double vanity and glass shower"></div>
-          <figcaption><b>Double Vanity</b>Glass walk-in shower</figcaption>
+          <figcaption><b data-i18n="bed4.title">Double Vanity</b><span data-i18n="bed4.cap">Glass walk-in shower</span></figcaption>
         </figure>
       </div>
     </div>
@@ -553,18 +578,18 @@
       <div class="wrap">
         <div class="split">
           <div>
-            <p class="eyebrow">Community &amp; Location</p>
-            <h2 class="display">Aldea Zama, from the inside</h2>
-            <p class="prose" style="margin-top:16px;">Casa Jade sits inside a gated community built around two swimming pools, a sundeck, a thatched-roof palapa, a grill, and security on duty around the clock — all shared space, all a short walk from your own front door.</p>
+            <p class="eyebrow" data-i18n="community.eyebrow">Community &amp; Location</p>
+            <h2 class="display" data-i18n="community.h2">Aldea Zama, from the inside</h2>
+            <p class="prose" style="margin-top:16px;" data-i18n="community.p1">Casa Jade sits inside a gated community built around two swimming pools, a sundeck, a thatched-roof palapa, a grill, and security on duty around the clock — all shared space, all a short walk from your own front door.</p>
             <ul class="amenity-list">
-              <li>2 outdoor pools</li>
-              <li>Sundeck &amp; showers</li>
-              <li>Palapa &amp; BBQ grill</li>
-              <li>24-hour security</li>
-              <li>Covered parking</li>
-              <li>Beach club access</li>
+              <li data-i18n="amenity.1">2 outdoor pools</li>
+              <li data-i18n="amenity.2">Sundeck &amp; showers</li>
+              <li data-i18n="amenity.3">Palapa &amp; BBQ grill</li>
+              <li data-i18n="amenity.4">24-hour security</li>
+              <li data-i18n="amenity.5">Covered parking</li>
+              <li data-i18n="amenity.6">Beach club access</li>
             </ul>
-            <p class="prose" style="margin-top:18px;">Ask and the current owners will arrange a private chef, a massage therapist, guided tours, cenote trips, or a table at their favorite restaurant. Aldea Zama itself is one of Tulum's fastest-growing neighborhoods — safe and walkable, filling in with new restaurants, coffee shops and boutiques every season, and close to the beach, the town, and the Mayan ruins outside it. Most owners rent a car; bicycles, taxis and buses cover the rest.</p>
+            <p class="prose" style="margin-top:18px;" data-i18n="community.p2">Ask and the current owners will arrange a private chef, a massage therapist, guided tours, cenote trips, or a table at their favorite restaurant. Aldea Zama itself is one of Tulum's fastest-growing neighborhoods — safe and walkable, filling in with new restaurants, coffee shops and boutiques every season, and close to the beach, the town, and the Mayan ruins outside it. Most owners rent a car; bicycles, taxis and buses cover the rest.</p>
           </div>
           <div class="photo"><img src="photos/pool-palapa.jpg" alt="Community swimming pool with thatched palapa and lounge chairs surrounded by jungle trees"></div>
         </div>
@@ -576,19 +601,19 @@
     <div class="wrap">
       <div class="panel">
         <div>
-          <p class="eyebrow">Rental History</p>
-          <h2 class="display">A home that already works</h2>
-          <p class="prose" style="margin-top:14px;">This isn't a renovation project — it's a furnished, active short-term rental with real guests and real reviews already behind it. Whoever buys it can keep the listing running from day one, or move in and make it home.</p>
+          <p class="eyebrow" data-i18n="invest.eyebrow">Rental History</p>
+          <h2 class="display" data-i18n="invest.h2">A home that already works</h2>
+          <p class="prose" style="margin-top:14px;" data-i18n="invest.p">This isn't a renovation project — it's a furnished, active short-term rental with real guests and real reviews already behind it. Whoever buys it can keep the listing running from day one, or move in and make it home.</p>
           <div class="stat-row">
-            <div><b>2018</b><span>Built &amp; furnished</span></div>
-            <div><b>3 / 3</b><span>Bed / bath ensuite</span></div>
-            <div><b>Active</b><span>Airbnb listing</span></div>
+            <div><b>2018</b><span data-i18n="invest.stat1label">Built &amp; furnished</span></div>
+            <div><b>3 / 3</b><span data-i18n="invest.stat2label">Bed / bath ensuite</span></div>
+            <div><b data-i18n="invest.stat3val">Active</b><span data-i18n="invest.stat3label">Airbnb listing</span></div>
           </div>
         </div>
         <div class="photo"><img src="photos/kitchen-entry.jpg" alt="Open kitchen and dining area near the front entry door"></div>
       </div>
       <div style="text-align:center; margin-top:28px;">
-        <a class="btn btn-primary" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">View the Live Airbnb Listing ↗</a>
+        <a class="btn btn-primary" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener" data-i18n="invest.cta">View the Live Airbnb Listing ↗</a>
       </div>
     </div>
   </section>
@@ -597,10 +622,10 @@
     <div class="wrap">
       <div class="panel">
         <div>
-          <p class="eyebrow">Get In Touch</p>
-          <h2 class="display">Inquire about Casa Jade</h2>
-          <p class="prose" style="margin-top:14px;">Send a few details and we'll follow up directly — happy to answer questions, share more photos, or set up a video walkthrough.</p>
-          <span class="price-note">Price available upon request</span>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Get In Touch</p>
+          <h2 class="display" data-i18n="contact.h2">Inquire about Casa Jade</h2>
+          <p class="prose" style="margin-top:14px;" data-i18n="contact.p">Send a few details and we'll follow up directly — happy to answer questions, share more photos, or set up a video walkthrough.</p>
+          <span class="price-note" data-i18n="contact.price">Price available upon request</span>
         </div>
         <form id="inquiry-form" action="https://formsubmit.co/corrado@cortechmiami.com" method="POST">
           <input type="hidden" name="_subject" value="Inquiry: Casa Jade, Aldea Zama">
@@ -608,24 +633,24 @@
           <input type="hidden" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="two-col">
             <div class="field">
-              <label for="cf-name">Name</label>
+              <label for="cf-name" data-i18n="form.name">Name</label>
               <input id="cf-name" name="name" type="text" required autocomplete="name">
             </div>
             <div class="field">
-              <label for="cf-email">Email</label>
+              <label for="cf-email" data-i18n="form.email">Email</label>
               <input id="cf-email" name="email" type="email" required autocomplete="email">
             </div>
           </div>
           <div class="field">
-            <label for="cf-phone">Phone (optional)</label>
+            <label for="cf-phone" data-i18n="form.phone">Phone (optional)</label>
             <input id="cf-phone" name="phone" type="tel" autocomplete="tel">
           </div>
           <div class="field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" required placeholder="Tell us about your timeline, financing, or any questions about the home."></textarea>
+            <label for="cf-message" data-i18n="form.message">Message</label>
+            <textarea id="cf-message" name="message" required placeholder="Tell us about your timeline, financing, or any questions about the home." data-i18n-placeholder="form.messagePlaceholder"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit" style="justify-content:center; margin-top:4px;">Send Inquiry</button>
-          <p id="form-status" role="status">Sent straight to our inbox — we'll reply directly to the email you give us.</p>
+          <button class="btn btn-primary" type="submit" style="justify-content:center; margin-top:4px;" data-i18n="form.submit">Send Inquiry</button>
+          <p id="form-status" role="status" data-i18n="form.status">Sent straight to our inbox — we'll reply directly to the email you give us.</p>
         </form>
       </div>
     </div>
@@ -634,8 +659,8 @@
 </main>
 
 <footer>
-  <span>Casa Jade · Aldea Zama, Tulum, Quintana Roo</span>
-  <a href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">See it live on Airbnb ↗</a>
+  <span data-i18n="footer.tag">Casa Jade · Aldea Zama, Tulum, Quintana Roo</span>
+  <a href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener" data-i18n="footer.airbnb">See it live on Airbnb ↗</a>
 </footer>
 
 <script>
@@ -647,5 +672,229 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  var I18N = {
+    en: {
+      "nav.home": `The Home`, "nav.location": `Location`, "nav.invest": `Rental History`, "nav.inquire": `Inquire`,
+      "hero.sub": `A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.`,
+      "hero.ctaPrimary": `Inquire About This Home`, "hero.ctaSecondary": `See It Live on Airbnb ↗`,
+      "facts.bedsLabel": `Bedrooms, each ensuite`, "facts.bathsNum": `3 + Powder`, "facts.bathsLabel": `Full & half baths`,
+      "facts.sqftLabel": `Interior sq ft`, "facts.builtLabel": `Year built`, "facts.gatedNum": `Gated`, "facts.gatedLabel": `24-hour security`,
+      "home.eyebrow": `The Home`, "home.h2": `Three floors, built for treetop living`,
+      "home.p1": `Three bedrooms, each with its own private bathroom, are spread across three light-filled floors — every one of them, plus the living room, cooled by its own A/C unit. The house came fully furnished in 2018 and has been kept that way since: nothing to buy, nothing to wait on.`,
+      "home.p2": `High-speed Wi-Fi covers every floor, and the layout is as easy for a family of six as it is for a couple who just wants the primary suite to themselves.`,
+      "kitchen.eyebrow": `Kitchen & Living`, "kitchen.h2": `Cook, gather, unwind`,
+      "kitchen.p1": `The kitchen has everything a home cook — or a private chef, if you'd rather book one — needs to work with: full-size refrigerator, oven, cooktop, and small appliances down to the coffee maker. A granite island seats six for breakfast before anyone's made it to the beach.`,
+      "kitchen.p2": `In the living room, a deep sectional faces a flat-screen wired for Apple TV, a Bluetooth speaker keeps the volume going, and a powder room means guests never have to climb a flight mid-party. Slide the glass doors open and the jungle-style back patio — shaded by bamboo — becomes part of the room.`,
+      "layout.eyebrow": `Layout`, "layout.h2": `How the house is laid out`,
+      "level1.h3": `Arrival Level`, "level1.p": `Kitchen, living room, powder room, and the shaded back patio all open off one another, with one covered parking space at the door (a second, or room for a larger vehicle, is easy to arrange in advance).`,
+      "level2.h3": `Guest Bedrooms`, "level2.p": `A queen room and a twin room — its two beds convert to a king on request — each keep a private ensuite bathroom and their own A/C unit, with jungle canopy views from the windows.`,
+      "level3.h3": `Primary Suite`, "level3.p": `The top-floor suite holds a king bed, a wall of glass looking straight into the treetops, a double-vanity bathroom, and a private open-air soaking tub screened by wood slats.`,
+      "beds.eyebrow": `Bedrooms & Baths`, "beds.h2": `Room for family, room to spread out`,
+      "beds.lede": `All three bedrooms are ensuite. Every bed is dressed and ready — no move-in shopping list required.`,
+      "bed1.title": `Primary Suite`, "bed1.cap": `King bed, private tub`, "bed2.title": `Second Bedroom`, "bed2.cap": `Queen bed, ensuite bath`,
+      "bed3.title": `Treetop Views`, "bed3.cap": `Floor-to-ceiling glass`, "bed4.title": `Double Vanity`, "bed4.cap": `Glass walk-in shower`,
+      "community.eyebrow": `Community & Location`, "community.h2": `Aldea Zama, from the inside`,
+      "community.p1": `Casa Jade sits inside a gated community built around two swimming pools, a sundeck, a thatched-roof palapa, a grill, and security on duty around the clock — all shared space, all a short walk from your own front door.`,
+      "community.p2": `Ask and the current owners will arrange a private chef, a massage therapist, guided tours, cenote trips, or a table at their favorite restaurant. Aldea Zama itself is one of Tulum's fastest-growing neighborhoods — safe and walkable, filling in with new restaurants, coffee shops and boutiques every season, and close to the beach, the town, and the Mayan ruins outside it. Most owners rent a car; bicycles, taxis and buses cover the rest.`,
+      "amenity.1": `2 outdoor pools`, "amenity.2": `Sundeck & showers`, "amenity.3": `Palapa & BBQ grill`,
+      "amenity.4": `24-hour security`, "amenity.5": `Covered parking`, "amenity.6": `Beach club access`,
+      "invest.eyebrow": `Rental History`, "invest.h2": `A home that already works`,
+      "invest.p": `This isn't a renovation project — it's a furnished, active short-term rental with real guests and real reviews already behind it. Whoever buys it can keep the listing running from day one, or move in and make it home.`,
+      "invest.stat1label": `Built & furnished`, "invest.stat2label": `Bed / bath ensuite`, "invest.stat3val": `Active`, "invest.stat3label": `Airbnb listing`,
+      "invest.cta": `View the Live Airbnb Listing ↗`,
+      "contact.eyebrow": `Get In Touch`, "contact.h2": `Inquire about Casa Jade`,
+      "contact.p": `Send a few details and we'll follow up directly — happy to answer questions, share more photos, or set up a video walkthrough.`,
+      "contact.price": `Price available upon request`,
+      "form.name": `Name`, "form.email": `Email`, "form.phone": `Phone (optional)`, "form.message": `Message`,
+      "form.messagePlaceholder": `Tell us about your timeline, financing, or any questions about the home.`,
+      "form.submit": `Send Inquiry`, "form.status": `Sent straight to our inbox — we'll reply directly to the email you give us.`,
+      "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `See it live on Airbnb ↗`
+    },
+    es: {
+      "nav.home": `La Casa`, "nav.location": `Ubicación`, "nav.invest": `Historial de Alquiler`, "nav.inquire": `Consultar`,
+      "hero.sub": `Una casa de tres recámaras totalmente amueblada, entre la vegetación de Aldea Zama — el vecindario privado y peatonal de Tulum, a solo minutos de la playa.`,
+      "hero.ctaPrimary": `Consultar Sobre Esta Casa`, "hero.ctaSecondary": `Verla en Vivo en Airbnb ↗`,
+      "facts.bedsLabel": `Recámaras, todas con baño propio`, "facts.bathsNum": `3 + Medio`, "facts.bathsLabel": `Baños completos y medio baño`,
+      "facts.sqftLabel": `Pies cuadrados interiores`, "facts.builtLabel": `Año de construcción`, "facts.gatedNum": `Privada`, "facts.gatedLabel": `Seguridad las 24 horas`,
+      "home.eyebrow": `La Casa`, "home.h2": `Tres pisos pensados para vivir entre los árboles`,
+      "home.p1": `Tres recámaras, cada una con baño privado, se reparten en tres pisos llenos de luz — todos ellos, junto con la sala, cuentan con su propio aire acondicionado. La casa se entregó completamente amueblada en 2018 y se ha mantenido así desde entonces: no hay nada que comprar ni que esperar.`,
+      "home.p2": `Wi-Fi de alta velocidad llega a cada piso, y la distribución funciona tan bien para una familia de seis como para una pareja que solo quiere la recámara principal para sí misma.`,
+      "kitchen.eyebrow": `Cocina y Sala`, "kitchen.h2": `Cocinar, reunirse, desconectar`,
+      "kitchen.p1": `La cocina tiene todo lo que necesita quien cocina en casa — o un chef privado, si prefieren contratar uno: refrigerador de tamaño completo, horno, estufa y electrodomésticos pequeños hasta la cafetera. Una isla de granito tiene lugar para seis personas en el desayuno antes de que nadie haya llegado a la playa.`,
+      "kitchen.p2": `En la sala, un sofá seccional profundo mira hacia una pantalla plana con Apple TV, una bocina Bluetooth mantiene el ambiente, y un medio baño evita que los invitados tengan que subir escaleras a media fiesta. Al abrir las puertas de vidrio, el patio trasero de estilo selvático — con sombra de bambú — se vuelve parte de la sala.`,
+      "layout.eyebrow": `Distribución`, "layout.h2": `Cómo está distribuida la casa`,
+      "level1.h3": `Nivel de Entrada`, "level1.p": `Cocina, sala, medio baño y el patio trasero con sombra se comunican entre sí, con un lugar de estacionamiento techado en la puerta (un segundo lugar, o espacio para un vehículo más grande, es fácil de coordinar con anticipación).`,
+      "level2.h3": `Recámaras de Huéspedes`, "level2.p": `Una recámara con cama queen y otra con dos camas individuales — que se convierten en cama king si se solicita — tienen cada una baño privado y su propio aire acondicionado, con vista al dosel de la selva desde las ventanas.`,
+      "level3.h3": `Recámara Principal`, "level3.p": `La suite del último piso tiene una cama king, un muro de vidrio con vista directa a las copas de los árboles, un baño con doble lavabo y una tina privada al aire libre protegida por listones de madera.`,
+      "beds.eyebrow": `Recámaras y Baños`, "beds.h2": `Espacio para la familia, espacio para estar a gusto`,
+      "beds.lede": `Las tres recámaras tienen baño propio. Cada cama está lista y tendida — no hace falta comprar nada al mudarse.`,
+      "bed1.title": `Recámara Principal`, "bed1.cap": `Cama king, tina privada`, "bed2.title": `Segunda Recámara`, "bed2.cap": `Cama queen, baño privado`,
+      "bed3.title": `Vistas al Dosel Verde`, "bed3.cap": `Vidrio de piso a techo`, "bed4.title": `Doble Lavabo`, "bed4.cap": `Regadera de vidrio`,
+      "community.eyebrow": `Comunidad y Ubicación`, "community.h2": `Aldea Zama, por dentro`,
+      "community.p1": `Casa Jade está dentro de un fraccionamiento privado con dos albercas, un solárium, una palapa de techo de palma, un asador y seguridad las 24 horas — todo a unos pasos de tu propia puerta.`,
+      "community.p2": `Basta con pedirlo y los dueños actuales pueden coordinar un chef privado, una masajista, tours guiados, visitas a cenotes o una mesa en su restaurante favorito. Aldea Zama es uno de los vecindarios de más rápido crecimiento en Tulum: seguro, caminable, y cada temporada llegan nuevos restaurantes, cafés y boutiques, todo cerca de la playa, el pueblo y las ruinas mayas cercanas. La mayoría de los dueños rentan un auto; bicicletas, taxis y camiones cubren el resto.`,
+      "amenity.1": `2 albercas al aire libre`, "amenity.2": `Solárium y regaderas`, "amenity.3": `Palapa y asador`,
+      "amenity.4": `Seguridad 24 horas`, "amenity.5": `Estacionamiento techado`, "amenity.6": `Acceso a beach club`,
+      "invest.eyebrow": `Historial de Alquiler`, "invest.h2": `Una casa que ya funciona`,
+      "invest.p": `Esto no es un proyecto de remodelación: es una renta vacacional amueblada y activa, con huéspedes y reseñas reales. Quien la compre puede seguir rentándola desde el primer día, o simplemente mudarse.`,
+      "invest.stat1label": `Construida y amueblada`, "invest.stat2label": `Recámara / baño propio`, "invest.stat3val": `Activo`, "invest.stat3label": `Anuncio en Airbnb`,
+      "invest.cta": `Ver el Anuncio en Vivo en Airbnb ↗`,
+      "contact.eyebrow": `Contáctanos`, "contact.h2": `Consulta sobre Casa Jade`,
+      "contact.p": `Envía algunos datos y te responderemos directamente — con gusto resolvemos dudas, compartimos más fotos o agendamos un recorrido en video.`,
+      "contact.price": `Precio disponible a solicitud`,
+      "form.name": `Nombre`, "form.email": `Correo electrónico`, "form.phone": `Teléfono (opcional)`, "form.message": `Mensaje`,
+      "form.messagePlaceholder": `Cuéntanos sobre tus tiempos, financiamiento, o cualquier duda sobre la casa.`,
+      "form.submit": `Enviar Consulta`, "form.status": `Se envía directo a nuestro correo — te responderemos al correo que nos compartas.`,
+      "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Verla en vivo en Airbnb ↗`
+    },
+    it: {
+      "nav.home": `La Casa`, "nav.location": `La Zona`, "nav.invest": `Storico Affitti`, "nav.inquire": `Contattaci`,
+      "hero.sub": `Una casa di tre camere completamente arredata, immersa nel verde di Aldea Zama — il quartiere recintato e pedonale di Tulum, a pochi minuti dalla spiaggia.`,
+      "hero.ctaPrimary": `Richiedi Informazioni`, "hero.ctaSecondary": `Guardala su Airbnb ↗`,
+      "facts.bedsLabel": `Camere, tutte con bagno privato`, "facts.bathsNum": `3 + Lavabo`, "facts.bathsLabel": `Bagni completi e di servizio`,
+      "facts.sqftLabel": `Superficie interna (piedi²)`, "facts.builtLabel": `Anno di costruzione`, "facts.gatedNum": `Recintata`, "facts.gatedLabel": `Sicurezza 24 ore`,
+      "home.eyebrow": `La Casa`, "home.h2": `Tre piani, pensati per vivere tra gli alberi`,
+      "home.p1": `Tre camere, ognuna con bagno privato, si distribuiscono su tre piani pieni di luce — ognuno di essi, così come il soggiorno, ha la propria unità di aria condizionata. La casa è stata consegnata completamente arredata nel 2018 ed è rimasta tale da allora: niente da comprare, niente da aspettare.`,
+      "home.p2": `Il Wi-Fi ad alta velocità copre ogni piano, e la disposizione degli spazi funziona bene sia per una famiglia numerosa sia per una coppia che vuole la suite principale solo per sé.`,
+      "kitchen.eyebrow": `Cucina e Soggiorno`, "kitchen.h2": `Cucinare, ritrovarsi, rilassarsi`,
+      "kitchen.p1": `La cucina ha tutto ciò che serve a chi cucina in casa — o a uno chef privato, se preferite prenotarne uno: frigorifero a grandezza naturale, forno, piano cottura e piccoli elettrodomestici fino alla macchina del caffè. Un'isola in granito ospita sei persone a colazione prima ancora di arrivare in spiaggia.`,
+      "kitchen.p2": `Nel soggiorno, un ampio divano ad angolo guarda verso una smart TV con Apple TV, una cassa Bluetooth tiene alta l'atmosfera, e un bagno di servizio evita agli ospiti di dover salire le scale durante una serata. Aprendo le porte a vetri, il patio sul retro in stile giungla — ombreggiato dal bambù — diventa parte del soggiorno.`,
+      "layout.eyebrow": `Distribuzione`, "layout.h2": `Come è organizzata la casa`,
+      "level1.h3": `Piano d'Ingresso`, "level1.p": `Cucina, soggiorno, bagno di servizio e il patio ombreggiato sul retro comunicano tra loro, con un posto auto coperto all'ingresso (un secondo posto, o spazio per un veicolo più grande, si organizza facilmente in anticipo).`,
+      "level2.h3": `Camere per gli Ospiti`, "level2.p": `Una camera con letto matrimoniale e una con due letti singoli — trasformabili in un letto matrimoniale su richiesta — hanno ciascuna un bagno privato e la propria aria condizionata, con vista sulla vegetazione dalle finestre.`,
+      "level3.h3": `Suite Principale`, "level3.p": `La suite all'ultimo piano ha un letto king size, una parete di vetro con vista diretta sulle cime degli alberi, un bagno con doppio lavabo e una vasca privata all'aperto schermata da listelli di legno.`,
+      "beds.eyebrow": `Camere e Bagni`, "beds.h2": `Spazio per la famiglia, spazio per rilassarsi`,
+      "beds.lede": `Tutte e tre le camere hanno bagno privato. Ogni letto è già pronto — niente da comprare al momento del trasferimento.`,
+      "bed1.title": `Suite Principale`, "bed1.cap": `Letto king, vasca privata`, "bed2.title": `Seconda Camera`, "bed2.cap": `Letto matrimoniale, bagno privato`,
+      "bed3.title": `Vista sulla Giungla`, "bed3.cap": `Vetrate a tutta altezza`, "bed4.title": `Doppio Lavabo`, "bed4.cap": `Doccia in vetro`,
+      "community.eyebrow": `Zona e Comunità`, "community.h2": `Aldea Zama, vista da dentro`,
+      "community.p1": `Casa Jade si trova all'interno di un residence recintato con due piscine, un solarium, una palapa in paglia, un barbecue e sicurezza attiva 24 ore su 24 — tutto a pochi passi da casa propria.`,
+      "community.p2": `Basta chiedere e i proprietari attuali organizzano uno chef privato, una massaggiatrice, tour guidati, gite ai cenotes o un tavolo nel loro ristorante preferito. Aldea Zama è uno dei quartieri in più rapida crescita di Tulum: sicuro, percorribile a piedi, con nuovi ristoranti, caffè e boutique che aprono ogni stagione, vicino alla spiaggia, al paese e alle rovine Maya poco distanti. La maggior parte dei proprietari noleggia un'auto; biciclette, taxi e autobus coprono il resto.`,
+      "amenity.1": `2 piscine esterne`, "amenity.2": `Solarium e docce`, "amenity.3": `Palapa e barbecue`,
+      "amenity.4": `Sicurezza 24 ore`, "amenity.5": `Posto auto coperto`, "amenity.6": `Accesso al beach club`,
+      "invest.eyebrow": `Storico Affitti`, "invest.h2": `Una casa che funziona già`,
+      "invest.p": `Non è un progetto da ristrutturare: è un affitto breve, arredato e attivo, con ospiti e recensioni reali alle spalle. Chi la acquista può continuare ad affittarla fin dal primo giorno, oppure trasferirsi e viverci.`,
+      "invest.stat1label": `Costruita e arredata`, "invest.stat2label": `Camere / bagni privati`, "invest.stat3val": `Attivo`, "invest.stat3label": `Annuncio su Airbnb`,
+      "invest.cta": `Guarda l'Annuncio su Airbnb ↗`,
+      "contact.eyebrow": `Contattaci`, "contact.h2": `Richiedi informazioni su Casa Jade`,
+      "contact.p": `Invia alcuni dettagli e ti risponderemo direttamente — siamo felici di rispondere a domande, condividere altre foto o organizzare un video tour.`,
+      "contact.price": `Prezzo disponibile su richiesta`,
+      "form.name": `Nome`, "form.email": `Email`, "form.phone": `Telefono (facoltativo)`, "form.message": `Messaggio`,
+      "form.messagePlaceholder": `Raccontaci le tue tempistiche, il finanziamento o qualsiasi domanda sulla casa.`,
+      "form.submit": `Invia Richiesta`, "form.status": `Arriva direttamente nella nostra casella di posta — ti risponderemo all'indirizzo che ci lasci.`,
+      "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Guardala su Airbnb ↗`
+    },
+    de: {
+      "nav.home": `Das Haus`, "nav.location": `Lage`, "nav.invest": `Vermietungshistorie`, "nav.inquire": `Anfragen`,
+      "hero.sub": `Ein komplett möbliertes Haus mit drei Schlafzimmern, eingebettet ins Grün von Aldea Zama — Tulums bewachtem, fußgängerfreundlichem Viertel nur wenige Minuten vom Strand entfernt.`,
+      "hero.ctaPrimary": `Jetzt Anfragen`, "hero.ctaSecondary": `Live auf Airbnb Ansehen ↗`,
+      "facts.bedsLabel": `Schlafzimmer, alle mit eigenem Bad`, "facts.bathsNum": `3 + Gäste-WC`, "facts.bathsLabel": `Voll- und Gästebäder`,
+      "facts.sqftLabel": `Wohnfläche (sq ft)`, "facts.builtLabel": `Baujahr`, "facts.gatedNum": `Bewacht`, "facts.gatedLabel": `24-Stunden-Sicherheit`,
+      "home.eyebrow": `Das Haus`, "home.h2": `Drei Stockwerke, gebaut fürs Leben im Baumkronendach`,
+      "home.p1": `Drei Schlafzimmer, jedes mit eigenem Bad, verteilen sich auf drei lichtdurchflutete Stockwerke — jedes davon, ebenso wie das Wohnzimmer, mit eigener Klimaanlage. Das Haus wurde 2018 komplett möbliert übergeben und ist seither so geblieben: nichts zu kaufen, nichts zu warten.`,
+      "home.p2": `Highspeed-WLAN erreicht jedes Stockwerk, und der Grundriss funktioniert genauso gut für eine sechsköpfige Familie wie für ein Paar, das die Hauptsuite ganz für sich haben möchte.`,
+      "kitchen.eyebrow": `Küche & Wohnbereich`, "kitchen.h2": `Kochen, zusammenkommen, entspannen`,
+      "kitchen.p1": `Die Küche bietet alles, was Hobbyköche — oder ein privater Koch, falls gewünscht — brauchen: einen großen Kühlschrank, Backofen, Kochfeld und Kleingeräte bis zur Kaffeemaschine. Eine Kücheninsel aus Granit bietet Platz für sechs Personen beim Frühstück, noch bevor jemand am Strand ist.`,
+      "kitchen.p2": `Im Wohnzimmer blickt eine tiefe Ecksofa-Landschaft auf einen Flachbildfernseher mit Apple TV, ein Bluetooth-Lautsprecher sorgt für Stimmung, und ein Gäste-WC erspart Gästen mitten in der Feier den Weg ins Obergeschoss. Schiebt man die Glastüren auf, wird die dschungelartige Terrasse — beschattet von Bambus — Teil des Wohnzimmers.`,
+      "layout.eyebrow": `Aufteilung`, "layout.h2": `So ist das Haus aufgeteilt`,
+      "level1.h3": `Eingangsebene`, "level1.p": `Küche, Wohnzimmer, Gäste-WC und die schattige Terrasse gehen ineinander über, mit einem überdachten Stellplatz direkt vor der Tür (ein zweiter Stellplatz oder Platz für ein größeres Fahrzeug lässt sich im Voraus problemlos organisieren).`,
+      "level2.h3": `Gästezimmer`, "level2.p": `Ein Zimmer mit Queen-Size-Bett und ein Zimmer mit zwei Einzelbetten — auf Wunsch zu einem King-Size-Bett kombinierbar — haben jeweils ein eigenes Bad und eine eigene Klimaanlage, mit Blick ins Blätterdach aus den Fenstern.`,
+      "level3.h3": `Hauptsuite`, "level3.p": `Die Suite im obersten Stockwerk bietet ein King-Size-Bett, eine Glasfront mit direktem Blick in die Baumkronen, ein Bad mit Doppelwaschtisch und eine private Außenwanne hinter einem Sichtschutz aus Holzlamellen.`,
+      "beds.eyebrow": `Schlafzimmer & Bäder`, "beds.h2": `Platz für die Familie, Platz zum Ausbreiten`,
+      "beds.lede": `Alle drei Schlafzimmer haben ein eigenes Bad. Jedes Bett ist bezogen und bereit — kein Einkaufszettel zum Einzug nötig.`,
+      "bed1.title": `Hauptsuite`, "bed1.cap": `King-Size-Bett, private Wanne`, "bed2.title": `Zweites Schlafzimmer`, "bed2.cap": `Queen-Size-Bett, eigenes Bad`,
+      "bed3.title": `Blick ins Blätterdach`, "bed3.cap": `Verglasung vom Boden bis zur Decke`, "bed4.title": `Doppelwaschtisch`, "bed4.cap": `Ebenerdige Glasdusche`,
+      "community.eyebrow": `Wohnanlage & Lage`, "community.h2": `Aldea Zama von innen`,
+      "community.p1": `Casa Jade liegt in einer bewachten Wohnanlage mit zwei Swimmingpools, einer Sonnenterrasse, einer strohgedeckten Palapa, einem Grillplatz und rund um die Uhr Sicherheitspersonal — alles nur wenige Schritte von der eigenen Haustür entfernt.`,
+      "community.p2": `Auf Wunsch organisieren die jetzigen Eigentümer einen privaten Koch, eine Massagetherapeutin, geführte Touren, Ausflüge zu Cenoten oder einen Tisch in ihrem Lieblingsrestaurant. Aldea Zama selbst zählt zu Tulums am schnellsten wachsenden Vierteln — sicher, fußläufig, mit jede Saison neuen Restaurants, Cafés und Boutiquen, nah am Strand, am Ort und an den Maya-Ruinen in der Umgebung. Die meisten Eigentümer mieten sich ein Auto; Fahrräder, Taxis und Busse decken den Rest ab.`,
+      "amenity.1": `2 Außenpools`, "amenity.2": `Sonnenterrasse & Duschen`, "amenity.3": `Palapa & Grillplatz`,
+      "amenity.4": `24-Stunden-Sicherheit`, "amenity.5": `Überdachter Stellplatz`, "amenity.6": `Zugang zum Beach Club`,
+      "invest.eyebrow": `Vermietungshistorie`, "invest.h2": `Ein Haus, das bereits funktioniert`,
+      "invest.p": `Das ist kein Renovierungsprojekt — es ist eine möblierte, aktive Ferienvermietung mit echten Gästen und echten Bewertungen. Wer es kauft, kann die Vermietung ab dem ersten Tag weiterführen oder einfach selbst einziehen.`,
+      "invest.stat1label": `Gebaut & möbliert`, "invest.stat2label": `Schlafzimmer / Bad, eigen`, "invest.stat3val": `Aktiv`, "invest.stat3label": `Airbnb-Anzeige`,
+      "invest.cta": `Live-Anzeige auf Airbnb Ansehen ↗`,
+      "contact.eyebrow": `Kontakt`, "contact.h2": `Anfrage zu Casa Jade`,
+      "contact.p": `Schicken Sie uns ein paar Angaben, und wir melden uns direkt bei Ihnen — gerne beantworten wir Fragen, senden weitere Fotos oder vereinbaren eine Video-Besichtigung.`,
+      "contact.price": `Preis auf Anfrage`,
+      "form.name": `Name`, "form.email": `E-Mail`, "form.phone": `Telefon (optional)`, "form.message": `Nachricht`,
+      "form.messagePlaceholder": `Erzählen Sie uns von Ihrem Zeitplan, der Finanzierung oder anderen Fragen zum Haus.`,
+      "form.submit": `Anfrage Senden`, "form.status": `Geht direkt in unser Postfach — wir antworten an die E-Mail-Adresse, die Sie angeben.`,
+      "footer.tag": `Casa Jade · Aldea Zama, Tulum, Quintana Roo`, "footer.airbnb": `Live auf Airbnb ansehen ↗`
+    },
+    zh: {
+      "nav.home": `房屋详情`, "nav.location": `周边位置`, "nav.invest": `租赁记录`, "nav.inquire": `立即咨询`,
+      "hero.sub": `一套三居室全配家具住宅,坐落于阿尔德亚萨玛(Aldea Zama)的丛林之间——图伦(Tulum)距海滩仅几分钟路程、设有门禁的宜居社区。`,
+      "hero.ctaPrimary": `咨询这套房产`, "hero.ctaSecondary": `查看 Airbnb 房源 ↗`,
+      "facts.bedsLabel": `间卧室,均带独立卫浴`, "facts.bathsNum": `3 + 半`, "facts.bathsLabel": `全卫生间及客用洗手间`,
+      "facts.sqftLabel": `室内面积(平方英尺)`, "facts.builtLabel": `建成年份`, "facts.gatedNum": `门禁`, "facts.gatedLabel": `24小时安保`,
+      "home.eyebrow": `房屋详情`, "home.h2": `三层设计,尽享树冠间的生活`,
+      "home.p1": `三间卧室各带独立卫浴,分布在三层采光充足的楼层——每层连同客厅都配有独立空调。这套房屋于2018年交付时已全配家具,至今保持原样:无需添置,拎包即可入住。`,
+      "home.p2": `高速无线网络覆盖每一层,无论是六口之家,还是只想独享主卧套房的两人世界,这样的格局都同样适用。`,
+      "kitchen.eyebrow": `厨房与客厅`, "kitchen.h2": `烹饪、聚会、放松`,
+      "kitchen.p1": `厨房配备居家烹饪——或私人主厨(如您更愿意预订一位)——所需的一切:全尺寸冰箱、烤箱、灶台,乃至咖啡机等小家电一应俱全。花岗岩中岛可供六人共进早餐,悠然出发前往海滩。`,
+      "kitchen.p2": `客厅里,一张宽大的转角沙发正对着连接 Apple TV 的平板电视,蓝牙音箱随时开启气氛,客用洗手间让客人无需在聚会中途上楼。推开玻璃门,竹荫掩映的丛林风格后院露台便与客厅融为一体。`,
+      "layout.eyebrow": `空间布局`, "layout.h2": `房屋楼层布局`,
+      "level1.h3": `入户楼层`, "level1.p": `厨房、客厅、客用洗手间与带遮荫的后院露台相互连通,门前设有一个带顶棚的停车位(如需第二个车位或更大车辆的空间,可提前轻松安排)。`,
+      "level2.h3": `客卧空间`, "level2.p": `一间大床房与一间双床房(两张单人床可应要求拼合为大床)均配有独立卫浴和专属空调,窗外便是丛林树冠景观。`,
+      "level3.h3": `主卧套房`, "level3.p": `顶层套房设有一张特大床、一整面直望树冠的玻璃墙、双台盆卫浴,以及一个由木条屏风围合的私人露天泡浴缸。`,
+      "beds.eyebrow": `卧室与卫浴`, "beds.h2": `既容纳家庭,也留足私享空间`,
+      "beds.lede": `三间卧室均带独立卫浴,床品一应俱全——入住无需额外采购。`,
+      "bed1.title": `主卧套房`, "bed1.cap": `特大床,私人浴缸`, "bed2.title": `第二卧室`, "bed2.cap": `大床,独立卫浴`,
+      "bed3.title": `树冠景观`, "bed3.cap": `落地玻璃窗`, "bed4.title": `双台盆卫浴`, "bed4.cap": `玻璃步入式淋浴间`,
+      "community.eyebrow": `社区与位置`, "community.h2": `走进阿尔德亚萨玛`,
+      "community.p1": `Casa Jade 位于一个设有门禁的社区内,社区配备两个游泳池、日光平台、茅草凉亭(帕拉帕)、烧烤区,并全天候安保值守——所有公共设施都近在家门口。`,
+      "community.p2": `只需一句话,现任业主便可为您安排私人主厨、按摩师、向导团、天然井(Cenote)游览,或在他们最爱的餐厅预留座位。阿尔德亚萨玛是图伦发展最快的社区之一——安全、宜步行,每一季都有新餐厅、咖啡馆和精品店陆续开业,且邻近海滩、市镇与周边的玛雅遗迹。大多数业主会选择租车;自行车、出租车与巴士也能满足日常出行。`,
+      "amenity.1": `2 个户外泳池`, "amenity.2": `日光平台与淋浴间`, "amenity.3": `帕拉帕凉亭与烧烤区`,
+      "amenity.4": `24小时安保`, "amenity.5": `带顶棚停车位`, "amenity.6": `可享沙滩俱乐部`,
+      "invest.eyebrow": `租赁记录`, "invest.h2": `一套已在运营的房产`,
+      "invest.p": `这并非有待翻新的项目——而是一套全配家具、正在运营的短租房产,已积累真实房客与真实评价。买家可从第一天起延续出租,也可直接自住。`,
+      "invest.stat1label": `建成并配齐家具`, "invest.stat2label": `卧室 / 独立卫浴`, "invest.stat3val": `运营中`, "invest.stat3label": `Airbnb 房源`,
+      "invest.cta": `查看 Airbnb 实时房源 ↗`,
+      "contact.eyebrow": `联系我们`, "contact.h2": `咨询 Casa Jade`,
+      "contact.p": `留下您的基本信息,我们会直接回复——欢迎咨询问题、索取更多照片,或预约视频看房。`,
+      "contact.price": `价格详情请咨询`,
+      "form.name": `姓名`, "form.email": `电子邮箱`, "form.phone": `电话(选填)`, "form.message": `留言`,
+      "form.messagePlaceholder": `请告诉我们您的购房时间、融资情况,或任何关于该房产的问题。`,
+      "form.submit": `发送咨询`, "form.status": `信息将直接发送至我们的邮箱——我们会回复至您留下的邮箱地址。`,
+      "footer.tag": `Casa Jade · 墨西哥金塔纳罗奥州图伦阿尔德亚萨玛`, "footer.airbnb": `查看 Airbnb 实时房源 ↗`
+    }
+  };
+
+  (function () {
+    var select = document.getElementById('lang-select');
+    var STORE_KEY = 'casaJadeLang';
+
+    function getSavedLang() {
+      try { return localStorage.getItem(STORE_KEY); } catch (e) { return null; }
+    }
+    function saveLang(lang) {
+      try { localStorage.setItem(STORE_KEY, lang); } catch (e) { /* ignore */ }
+    }
+
+    function applyLang(lang) {
+      var dict = I18N[lang] || I18N.en;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    var initial = getSavedLang() || 'en';
+    if (!I18N[initial]) initial = 'en';
+    select.value = initial;
+    applyLang(initial);
+
+    select.addEventListener('change', function () {
+      var lang = select.value;
+      saveLang(lang);
+      applyLang(lang);
+    });
   })();
 </script>

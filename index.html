@@ -1,0 +1,651 @@
+<title>Casa Jade</title>
+<style>
+  :root {
+    --stucco: #F2EDE2;
+    --stucco-deep: #E6DDC8;
+    --panel: #FFFFFF;
+    --ink: #23261F;
+    --ink-soft: #55594C;
+    --canopy: #21382C;
+    --canopy-soft: #3E5A48;
+    --pool: #2C8C87;
+    --clay: #A6602F;
+    --line: rgba(35, 38, 31, 0.14);
+    --shadow: rgba(35, 38, 31, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --stucco: #191A15;
+      --stucco-deep: #23241D;
+      --panel: #21221B;
+      --ink: #ECE7D8;
+      --ink-soft: #B7B29F;
+      --canopy: #8FC3A6;
+      --canopy-soft: #6E9E85;
+      --pool: #57C4BE;
+      --clay: #E0925A;
+      --line: rgba(236, 231, 216, 0.14);
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --stucco: #191A15;
+    --stucco-deep: #23241D;
+    --panel: #21221B;
+    --ink: #ECE7D8;
+    --ink-soft: #B7B29F;
+    --canopy: #8FC3A6;
+    --canopy-soft: #6E9E85;
+    --pool: #57C4BE;
+    --clay: #E0925A;
+    --line: rgba(236, 231, 216, 0.14);
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--stucco);
+    color: var(--ink);
+    font-family: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  h1, h2, h3, .display {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    line-height: 1.08;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pool);
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: clamp(18px, 4vw, 48px);
+  }
+
+  /* ---------- NAV ---------- */
+  #nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px clamp(18px, 4vw, 48px);
+    background: transparent;
+    transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+  }
+  #nav.solid {
+    background: color-mix(in srgb, var(--stucco) 92%, transparent);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 var(--line);
+    padding-block: 12px;
+  }
+  #nav .brand {
+    font-family: "Fraunces", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  #nav .brand span { color: var(--pool); }
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2.5vw, 30px);
+    font-size: 0.85rem;
+  }
+  #nav-links a.section-link { display: none; }
+  @media (min-width: 760px) {
+    #nav-links a.section-link { display: inline; }
+  }
+  #nav-links a.section-link:hover { color: var(--pool); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 11px 22px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    font-family: "Archivo", sans-serif;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--canopy); color: var(--stucco); }
+  .btn-primary:hover { background: var(--canopy-soft); }
+  .btn-line {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .btn-line:hover { border-color: var(--pool); color: var(--pool); }
+
+  /* ---------- HERO ---------- */
+  #hero {
+    position: relative;
+    padding-top: clamp(60px, 14vw, 130px);
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  #hero .frame {
+    margin: 0 clamp(12px, 3vw, 32px);
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-height: 720px;
+  }
+  @media (min-width: 700px) {
+    #hero .frame { aspect-ratio: 16 / 9; }
+  }
+  #hero .frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 65%;
+  }
+  #hero .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(15,17,12,0.82) 0%, rgba(15,17,12,0.28) 46%, rgba(15,17,12,0.05) 68%);
+  }
+  #hero .copy {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: clamp(20px, 4vw, 48px);
+    color: #F4EFE2;
+  }
+  #hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    color: #F9F5E9;
+  }
+  #hero .loc {
+    margin-top: 10px;
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    color: #E4DEC8;
+    max-width: 46ch;
+  }
+  #hero .cta-row {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  #hero .cta-row .btn-line { border-color: rgba(244,239,226,0.4); color: #F4EFE2; }
+  #hero .cta-row .btn-line:hover { border-color: var(--pool); color: var(--pool); }
+
+  /* ---------- FACT STRIP ---------- */
+  #facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: clamp(20px, 4vw, 36px) clamp(12px, 3vw, 32px) 0;
+  }
+  @media (min-width: 700px) {
+    #facts { grid-template-columns: repeat(5, 1fr); }
+  }
+  #facts .fact {
+    background: var(--panel);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  #facts svg { width: 22px; height: 22px; stroke: var(--pool); flex-shrink: 0; }
+  #facts .num { font-family: "Fraunces", serif; font-size: 1.3rem; font-weight: 600; }
+  #facts .label { font-size: 0.75rem; color: var(--ink-soft); letter-spacing: 0.02em; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: clamp(56px, 9vw, 108px) 0; }
+  .section-head { max-width: 62ch; margin-bottom: clamp(28px, 5vw, 48px); }
+  .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-top: 8px; }
+  .section-head p.lede { margin-top: 14px; font-size: 1.05rem; color: var(--ink-soft); max-width: 58ch; }
+
+  .split {
+    display: grid;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
+  }
+  @media (min-width: 860px) {
+    .split { grid-template-columns: 0.85fr 1.15fr; }
+    .split.reverse { grid-template-columns: 1.15fr 0.85fr; }
+    .split.reverse > *:first-child { order: 2; }
+  }
+  .prose { font-size: 1.02rem; color: var(--ink-soft); }
+  .prose + .prose { margin-top: 14px; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+
+  .photo {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--stucco-deep);
+    box-shadow: 0 18px 40px -22px var(--shadow);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* about gallery */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .about-grid .photo:first-child { aspect-ratio: 3/4; grid-row: span 2; }
+  .about-grid .photo:last-child { aspect-ratio: 4/3; align-self: end; }
+
+  /* kitchen gallery */
+  .kitchen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 14px;
+  }
+  .kitchen-grid .photo.big { grid-column: 1 / -1; aspect-ratio: 16/10; }
+  .kitchen-grid .photo.small { aspect-ratio: 1/1; }
+  @media (min-width: 860px) {
+    .kitchen-grid { grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; }
+    .kitchen-grid .photo.big { grid-column: 1; grid-row: 1 / span 2; aspect-ratio: auto; height: 100%; }
+  }
+
+  /* levels */
+  .levels { display: flex; flex-direction: column; gap: 0; }
+  .level {
+    display: grid;
+    gap: 20px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .level:last-child { border-bottom: 1px solid var(--line); }
+  @media (min-width: 780px) {
+    .level { grid-template-columns: 90px 1fr 1.1fr; align-items: center; }
+  }
+  .level .tag {
+    font-family: "Fraunces", serif;
+    font-size: 2.4rem;
+    color: var(--stucco-deep);
+    -webkit-text-stroke: 1.5px var(--pool);
+    color: transparent;
+    font-weight: 600;
+  }
+  .level h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .level .photo { aspect-ratio: 16/10; }
+
+  /* bedrooms strip */
+  .bed-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 700px) { .bed-grid { grid-template-columns: repeat(4, 1fr); } }
+  .bed-grid figure { margin: 0; }
+  .bed-grid .photo { aspect-ratio: 3/4; }
+  .bed-grid figcaption {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .bed-grid figcaption b { color: var(--ink); display: block; font-size: 0.92rem; margin-bottom: 2px; }
+
+  /* community full bleed */
+  #community { background: var(--canopy); color: #F4EFE2; }
+  #community .eyebrow { color: #9FD8C4; }
+  #community h2 { color: #F9F5E9; }
+  #community .prose { color: #D9D5C2; }
+  #community .amenity-list {
+    list-style: none;
+    padding: 0; margin: 22px 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+  }
+  @media (min-width: 600px) { #community .amenity-list { grid-template-columns: repeat(3, 1fr); } }
+  #community .amenity-list li {
+    font-size: 0.92rem;
+    padding-left: 20px;
+    position: relative;
+    color: #EDE9D8;
+  }
+  #community .amenity-list li::before {
+    content: "";
+    position: absolute; left: 0; top: 0.55em;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--pool);
+  }
+  #community .photo { border-radius: 18px; }
+
+  /* investment */
+  #invest .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 44px);
+    display: grid;
+    gap: 24px;
+  }
+  @media (min-width: 780px) { #invest .panel { grid-template-columns: 1.1fr 0.9fr; align-items: center; } }
+  #invest .stat-row { display: flex; gap: 28px; margin-top: 18px; flex-wrap: wrap; }
+  #invest .stat-row div b { display:block; font-family:"Fraunces",serif; font-size:1.5rem; }
+  #invest .stat-row div span { font-size: 0.78rem; color: var(--ink-soft); letter-spacing: 0.03em; }
+
+  /* contact */
+  #contact { background: var(--stucco-deep); }
+  #contact .panel {
+    background: var(--panel);
+    border-radius: 20px;
+    padding: clamp(24px, 5vw, 48px);
+    display: grid;
+    gap: clamp(28px, 5vw, 56px);
+    box-shadow: 0 24px 60px -30px var(--shadow);
+  }
+  @media (min-width: 860px) { #contact .panel { grid-template-columns: 0.9fr 1.1fr; } }
+  #contact form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.03em; color: var(--ink-soft); }
+  .field input, .field textarea {
+    font: inherit;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--stucco);
+    color: var(--ink);
+  }
+  .field input:focus, .field textarea:focus {
+    outline: 2px solid var(--pool);
+    outline-offset: 1px;
+  }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 480px) { .two-col { grid-template-columns: 1fr 1fr; } }
+  #form-status {
+    font-size: 0.85rem;
+    color: var(--pool);
+    min-height: 1.2em;
+  }
+  #contact .price-note {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--clay) 16%, transparent);
+    color: var(--clay);
+    font-weight: 600;
+  }
+
+  footer {
+    padding: 32px clamp(18px, 4vw, 48px) calc(32px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+  }
+  footer a:hover { color: var(--pool); }
+</style>
+
+<nav id="nav">
+  <div class="brand">Casa <span>Jade</span></div>
+  <div id="nav-links">
+    <a class="section-link" href="#home">The Home</a>
+    <a class="section-link" href="#location">Location</a>
+    <a class="section-link" href="#invest">Rental History</a>
+    <a class="btn btn-primary" href="#contact">Inquire</a>
+  </div>
+</nav>
+
+<header id="hero">
+  <div class="frame">
+    <img src="photos/living-room-wide.jpg" alt="Living room with sectional sofa facing floor-to-ceiling glass doors that open onto a private jungle patio">
+    <div class="scrim"></div>
+    <div class="copy">
+      <h1 class="display">Casa Jade</h1>
+      <p class="loc">A fully furnished three-bedroom home tucked into the jungle canopy of Aldea Zama — Tulum's gated, walkable neighborhood minutes from the beach.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contact">Inquire About This Home</a>
+        <a class="btn btn-line" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">See It Live on Airbnb ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="facts" class="wrap" style="margin-inline:auto;">
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18h18"/><path d="M5 10V7a2 2 0 0 1 2-2h3v5"/><path d="M14 10V7a2 2 0 0 0-2-2h-1"/></svg>
+      <div class="num">3</div><div class="label">Bedrooms, each ensuite</div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z"/><path d="M6 12V6a2 2 0 0 1 3.6-1.2"/><path d="M4 12V9"/></svg>
+      <div class="num">3 + Powder</div><div class="label">Full &amp; half baths</div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="1.5"/><path d="M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
+      <div class="num">1,750</div><div class="label">Interior sq ft</div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+      <div class="num">2018</div><div class="label">Year built</div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.4 3.4 8.4 8 9 4.6-.6 8-4.6 8-9V6l-8-3Z"/></svg>
+      <div class="num">Gated</div><div class="label">24-hour security</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="home">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">The Home</p>
+          <h2 class="display">Three floors, built for treetop living</h2>
+          <p class="prose" style="margin-top:16px;">Three bedrooms, each with its own private bathroom, are spread across three light-filled floors — every one of them, plus the living room, cooled by its own A/C unit. The house came fully furnished in 2018 and has been kept that way since: nothing to buy, nothing to wait on.</p>
+          <p class="prose">High-speed Wi-Fi covers every floor, and the layout is as easy for a family of six as it is for a couple who just wants the primary suite to themselves.</p>
+        </div>
+        <div class="about-grid">
+          <div class="photo"><img src="photos/living-room-loft.jpg" alt="View down into the living room from the upper-floor landing, showing the sectional sofa and patio doors below"></div>
+          <div class="photo"><img src="photos/living-room-sofa.jpg" alt="Living room sofa with colorful accent pillow beside glass doors to the back patio"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kitchen" style="background:var(--stucco-deep);">
+    <div class="wrap">
+      <div class="split reverse">
+        <div>
+          <p class="eyebrow">Kitchen &amp; Living</p>
+          <h2 class="display">Cook, gather, unwind</h2>
+          <p class="prose" style="margin-top:16px;">The kitchen has everything a home cook — or a private chef, if you'd rather book one — needs to work with: full-size refrigerator, oven, cooktop, and small appliances down to the coffee maker. A granite island seats six for breakfast before anyone's made it to the beach.</p>
+          <p class="prose">In the living room, a deep sectional faces a flat-screen wired for Apple TV, a Bluetooth speaker keeps the volume going, and a powder room means guests never have to climb a flight mid-party. Slide the glass doors open and the jungle-style back patio — shaded by bamboo — becomes part of the room.</p>
+        </div>
+        <div class="kitchen-grid">
+          <div class="photo big"><img src="photos/kitchen-island.jpg" alt="Kitchen with granite island, bar stools for six, and staircase to the upper floor"></div>
+          <div class="photo small"><img src="photos/dining-stairs.jpg" alt="Dining table with fruit bowl and staircase in the background"></div>
+          <div class="photo small"><img src="photos/patio-bamboo.jpg" alt="Jungle-style back patio dining table shaded by bamboo"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="levels">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Layout</p>
+        <h2 class="display">How the house is laid out</h2>
+      </div>
+      <div class="levels">
+        <div class="level">
+          <div class="tag">01</div>
+          <div>
+            <h3>Arrival Level</h3>
+            <p class="prose">Kitchen, living room, powder room, and the shaded back patio all open off one another, with one covered parking space at the door (a second, or room for a larger vehicle, is easy to arrange in advance).</p>
+          </div>
+          <div class="photo"><img src="photos/patio-facade.jpg" alt="Exterior view of the house facade with floor-to-ceiling windows and a covered dining patio, surrounded by jungle trees"></div>
+        </div>
+        <div class="level">
+          <div class="tag">02</div>
+          <div>
+            <h3>Guest Bedrooms</h3>
+            <p class="prose">A queen room and a twin room — its two beds convert to a king on request — each keep a private ensuite bathroom and their own A/C unit, with jungle canopy views from the windows.</p>
+          </div>
+          <div class="photo"><img src="photos/twin-bedroom.jpg" alt="Twin bedroom with two beds, navy accent bedding, and a work desk"></div>
+        </div>
+        <div class="level">
+          <div class="tag">03</div>
+          <div>
+            <h3>Primary Suite</h3>
+            <p class="prose">The top-floor suite holds a king bed, a wall of glass looking straight into the treetops, a double-vanity bathroom, and a private open-air soaking tub screened by wood slats.</p>
+          </div>
+          <div class="photo"><img src="photos/rooftop-jacuzzi.jpg" alt="Private open-air jacuzzi tub on a wood-screened terrace surrounded by trees"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bedrooms" style="background:var(--stucco-deep);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Bedrooms &amp; Baths</p>
+        <h2 class="display">Room for family, room to spread out</h2>
+        <p class="lede">All three bedrooms are ensuite. Every bed is dressed and ready — no move-in shopping list required.</p>
+      </div>
+      <div class="bed-grid">
+        <figure>
+          <div class="photo"><img src="photos/master-bed-wide.jpg" alt="Primary bedroom with king bed and dark accent wall"></div>
+          <figcaption><b>Primary Suite</b>King bed, private tub</figcaption>
+        </figure>
+        <figure>
+          <div class="photo"><img src="photos/queen-bedroom.jpg" alt="Second bedroom with queen bed and yellow accent blanket"></div>
+          <figcaption><b>Second Bedroom</b>Queen bed, ensuite bath</figcaption>
+        </figure>
+        <figure>
+          <div class="photo"><img src="photos/master-bed-jungle.jpg" alt="Primary bedroom floor-to-ceiling windows looking into the jungle canopy"></div>
+          <figcaption><b>Treetop Views</b>Floor-to-ceiling glass</figcaption>
+        </figure>
+        <figure>
+          <div class="photo"><img src="photos/master-bath.jpg" alt="Primary bathroom with double vanity and glass shower"></div>
+          <figcaption><b>Double Vanity</b>Glass walk-in shower</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <div id="community">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Community &amp; Location</p>
+            <h2 class="display">Aldea Zama, from the inside</h2>
+            <p class="prose" style="margin-top:16px;">Casa Jade sits inside a gated community built around two swimming pools, a sundeck, a thatched-roof palapa, a grill, and security on duty around the clock — all shared space, all a short walk from your own front door.</p>
+            <ul class="amenity-list">
+              <li>2 outdoor pools</li>
+              <li>Sundeck &amp; showers</li>
+              <li>Palapa &amp; BBQ grill</li>
+              <li>24-hour security</li>
+              <li>Covered parking</li>
+              <li>Beach club access</li>
+            </ul>
+            <p class="prose" style="margin-top:18px;">Ask and the current owners will arrange a private chef, a massage therapist, guided tours, cenote trips, or a table at their favorite restaurant. Aldea Zama itself is one of Tulum's fastest-growing neighborhoods — safe and walkable, filling in with new restaurants, coffee shops and boutiques every season, and close to the beach, the town, and the Mayan ruins outside it. Most owners rent a car; bicycles, taxis and buses cover the rest.</p>
+          </div>
+          <div class="photo"><img src="photos/pool-palapa.jpg" alt="Community swimming pool with thatched palapa and lounge chairs surrounded by jungle trees"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="invest">
+    <div class="wrap">
+      <div class="panel">
+        <div>
+          <p class="eyebrow">Rental History</p>
+          <h2 class="display">A home that already works</h2>
+          <p class="prose" style="margin-top:14px;">This isn't a renovation project — it's a furnished, active short-term rental with real guests and real reviews already behind it. Whoever buys it can keep the listing running from day one, or move in and make it home.</p>
+          <div class="stat-row">
+            <div><b>2018</b><span>Built &amp; furnished</span></div>
+            <div><b>3 / 3</b><span>Bed / bath ensuite</span></div>
+            <div><b>Active</b><span>Airbnb listing</span></div>
+          </div>
+        </div>
+        <div class="photo"><img src="photos/kitchen-entry.jpg" alt="Open kitchen and dining area near the front entry door"></div>
+      </div>
+      <div style="text-align:center; margin-top:28px;">
+        <a class="btn btn-primary" href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">View the Live Airbnb Listing ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="panel">
+        <div>
+          <p class="eyebrow">Get In Touch</p>
+          <h2 class="display">Inquire about Casa Jade</h2>
+          <p class="prose" style="margin-top:14px;">Send a few details and we'll follow up directly — happy to answer questions, share more photos, or set up a video walkthrough.</p>
+          <span class="price-note">Price available upon request</span>
+        </div>
+        <form id="inquiry-form" action="https://formsubmit.co/corrado@cortechmiami.com" method="POST">
+          <input type="hidden" name="_subject" value="Inquiry: Casa Jade, Aldea Zama">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="two-col">
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone (optional)</label>
+            <input id="cf-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required placeholder="Tell us about your timeline, financing, or any questions about the home."></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="justify-content:center; margin-top:4px;">Send Inquiry</button>
+          <p id="form-status" role="status">Sent straight to our inbox — we'll reply directly to the email you give us.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Casa Jade · Aldea Zama, Tulum, Quintana Roo</span>
+  <a href="https://www.airbnb.com/rooms/30375764" target="_blank" rel="noopener">See it live on Airbnb ↗</a>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('nav');
+    var onScroll = function () {
+      if (window.scrollY > 40) nav.classList.add('solid');
+      else nav.classList.remove('solid');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
